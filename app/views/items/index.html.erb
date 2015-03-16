@@ -1,0 +1,6 @@
+Sort by: <a href="/items?available=t&order=msrp+desc">Price: high to low</a>&nbsp;|&nbsp;<a href="/items?available=t&order=msrp+asc">Price: low to high</a>
+<p id="notice"><%= notice %></p>
+
+<%- @items.each do |item| -%>
+  <%= render item %>
+<%- end -%>

@@ -1,0 +1,31 @@
+<div class="item_container">
+  <div class="item_thumbnail">
+    <img src="<%= item.image_url %>" />
+  </div>
+  <div class="item_meta">
+    <a href="<%= item.link %>" target="_blank"><h2><%= item.name %></h2></a>
+    <div class="price">
+      Price: $<%= item.msrp %>
+    </div>
+    <div class="item_toggle">
+      <%- if( item.available ) -%>
+      <%= link_to(
+	  'Mark this item as purchased', 
+	  "/items/#{item.id}/deactivate",
+	  { method: :put, data: { confirm: 'You would like to take this item off of the registry?'}}) %>
+      <%- else -%>
+      <%= link_to(
+	  'Oops, put this item back on the registry', 
+	  "/items/#{item.id}/activate",
+	  { method: :put, data: { confirm: 'You would like to make this item available for other people to purchase?' }}) %>
+    <%- end -%>
+    </div>
+  </div>
+  <%- if( session[:admin] == true ) -%>
+  <div class="item_actions">
+    <%= link_to 'Show', item %>
+    <%= link_to 'Edit', edit_item_path(item) %>
+    <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <%- end -%>
+</div>

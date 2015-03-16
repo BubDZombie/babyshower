@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <title>Matt and Katie Maul's Baby Registry</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.png' %>
+</head>
+<body>
+  <div id="header">
+    <h1>Matt and Katie Maul's Baby Registry</h1>
+    <div id="nav">
+      <a class="welcome_link" href="/items?available=t&order=msrp+desc">What is still available?</a>
+      <a class="welcome_link"  href="/items?available=f&order=msrp+desc">What has already been taken?</a>
+      <div class="manage_link">
+	<%- if( session[:admin] == true ) -%>
+	<a href="/manage/log_out">Log Out</a>
+        <%- else -%>
+	<a href="/manage/log_in">Manage</a>
+        <%- end -%>
+      </div>
+    </div>
+  </div>
+  <div id="page-container">
+    <%= yield %>
+  </div>
+</body>
+</html>
